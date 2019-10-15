@@ -1,7 +1,8 @@
-close all; clear;clc
+close all;
+clear;clc
 
 % get test patient slice range and indices
-load('/raid/zzhou13/brainMets/datasets/detectPrep266/Rad_resub/DICOMs_and_props/patientDataTst.mat')
+load('/path/dataTst.mat')
 sliceNums = zeros(1,54);
 sliceIdxs = cell(54,1);
 for i = 1:54
@@ -19,7 +20,7 @@ end
 
 
 % get the ground truth masks
-corTst = csvread('/raid/zzhou13/brainMets/datasets/detectPrep266/Rad_resub/labels_tst_eql.csv', 1, 0);
+corTst = csvread('/path/labels_tst.csv', 1, 0);
 corTst = sortrows(corTst);
 corTst = corTst(:,1:5);
 
@@ -116,7 +117,7 @@ end
     
 
 % generate the prediction masks
-corPrd = csvread([pwd '/SSD_ResNet_conf50.csv']);
+corPrd = csvread([pwd '/SSD_conf50.csv']);
 corPrd = sortrows(corPrd);
 
 mskPrd = single(zeros(a,b,c));
