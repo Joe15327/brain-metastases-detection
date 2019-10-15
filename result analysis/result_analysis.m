@@ -1,7 +1,8 @@
-close all; clear;clc
+close all;
+clear;clc
 
 % get the ground truth masks
-corTst = csvread('/raid/zzhou13/brainMets/datasets/detectPrep266/Rad_resub/labels_tst_eql.csv', 1, 0);
+corTst = csvread('/path/labels_tst.csv', 1, 0);
 corTst = sortrows(corTst);
 corTst = corTst(:,1:5);
 
@@ -65,7 +66,7 @@ sum(metSize_eq >= 6)
 
 
 % generate the prediction masks
-corPrd = csvread('/raid/zzhou13/brainMets/SSD20D/RadSubs/results/SSD_ResNet_conf50.csv');
+corPrd = csvread('/path/SSD_conf50.csv');
 corPrd = sortrows(corPrd);
 
 mskPrd = single(zeros(a, b, c));
@@ -197,3 +198,4 @@ tpMetsA6 = sum(tpMets >= 6);
 fpMetsB3 = sum(fpMets < 3);
 fpMetsA3B6 = sum((fpMets >= 3) & (fpMets < 6));
 fpMetsA6 = sum(fpMets >= 6);
+
